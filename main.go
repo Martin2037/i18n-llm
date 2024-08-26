@@ -21,9 +21,16 @@ var (
 )
 
 var rootCmd = &cobra.Command{
-	Use:   "i18n-translator",
-	Short: "A CLI tool for translating i18n JSON files",
-	Long:  `i18n-translator is a command-line tool that helps you translate JSON files for internationalization.`,
+	Use:   "i18n",
+	Short: "AI-Powered Internationalization Translation Tool",
+	Long: `i18n is a command-line tool that leverages AI to streamline 
+your internationalization (i18n) workflow. It helps you translate 
+JSON localization files into multiple languages with ease.`,
+	// This is called by default if no subcommands are specified
+	Run: func(cmd *cobra.Command, args []string) {
+		// You can put the default behavior here, or leave it empty
+		fmt.Println("Use 'i18n translate' to start translation")
+	},
 }
 
 var translateCmd = &cobra.Command{

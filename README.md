@@ -23,7 +23,7 @@ i18n-llm is a revolutionary command-line tool that leverages advanced artificial
 ### Installation
 
 ```bash
-go install github.com/yourusername/i18n-llm@latest
+go install github.com/Martin2037/i18n-llm@latest
 ```
 
 ### Usage
