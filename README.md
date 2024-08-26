@@ -20,7 +20,7 @@ Tired of slow, inaccurate translations holding back your global reach? Say hello
 
 ```bash
 export OPENAI_API_KEY=your_api_key_here
-i18n-llm translate -s en -t zh,es,fr -d ./src/locales
+i18n translate -s en -t zh,es,fr -d ./src/locales
 ```
 
 Boom! Your entire app just learned to speak Chinese, Spanish, and French. It's that simple.
@@ -90,7 +90,7 @@ export OPENAI_API_KEY=your_api_key_here
 3. Let the magic happen:
 
 ```bash
-i18n-llm translate -s en -d ./path/to/your/locales
+i18n translate -s en -d ./path/to/your/locales
 ```
 
 This command translates all JSON files from English to all supported languages. It's that easy!
@@ -99,7 +99,7 @@ This command translates all JSON files from English to all supported languages. 
 
 Translate to specific languages:
 ```bash
-i18n-llm translate -s en -t fr,de,es -d ./src/i18n
+i18n translate -s en -t fr,de,es -d ./src/i18n
 ```
 
 ## 🚀 Real-World Example: Going Global in Minutes
@@ -113,7 +113,7 @@ i18n-llm translate -s en -t fr,de,es -d ./src/i18n
 
 3. Cast the translation spell:
    ```bash
-   i18n-llm translate -s en -t zh,ja,ko,es,fr -d ./src/locales
+   i18n translate -s en -t zh,ja,ko,es,fr -d ./src/locales
    ```
 
    Watch as i18n-llm:
