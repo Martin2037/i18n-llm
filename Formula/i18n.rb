@@ -13,6 +13,6 @@ class I18n < Formula
   end
 
   test do
-    assert_match "i18n version 0.0.2", shell_output("#{bin}/i18n --version")
+    assert_match "i18n version 0.0.3", shell_output("#{bin}/i18n --version")
   end
 end
