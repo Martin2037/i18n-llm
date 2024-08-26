@@ -1,8 +1,8 @@
 class I18n < Formula
   desc "AI-Powered Internationalization Translation Tool"
   homepage "https://github.com/Martin2037/i18n-llm"
-  url "https://github.com/Martin2037/i18n-llm/archive/refs/tags/v0.0.1.tar.gz"
-  sha256 "119ee836e5c722e0e1fe8ca6b4be6f8cf923adc6b97edd6c8334b8d795b3895f"
+  url "https://github.com/Martin2037/i18n-llm/archive/refs/tags/v0.0.1-brew.tar.gz"
+  sha256 "e616635ddbfa6263472915979954526100a491bfd0a1c30e180df4790898cf36"
   license "MIT"
 
   depends_on "go" => :build
