@@ -14,7 +14,7 @@ var (
 	sourceDir   string
 	targetLangs []string
 	allLangs    = []string{
-		"en", "es", "fr", "de", "it", "pt", "ru", "zh-CN", "zh-TW", "ja", "ko",
+		"en", "es", "fr", "de", "it", "pt", "ru", "zh-CN", "zh-HK", "ja", "ko",
 		"ar", "hi", "nl", "pl", "tr", "sv", "da", "fi", "no", "id", "th", "vi",
 	}
 	llmInstance *openai.LLM

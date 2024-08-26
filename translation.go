@@ -9,7 +9,6 @@ import (
 	"github.com/tmc/langchaingo/llms"
 	"github.com/tmc/langchaingo/llms/openai"
 	"io/ioutil"
-	"log"
 	"os"
 	"path/filepath"
 	"strings"
@@ -79,26 +78,43 @@ func translateContent(llm *openai.LLM, content map[string]interface{}, targetLan
 		return nil, fmt.Errorf("failed to marshal input content: %v", err)
 	}
 
-	prompt := fmt.Sprintf(`Translate the following JSON from %s to %s. 
-Keep the original structure and keys. Only translate the values.
-Do not include a translation for the source language.
+	prompt := fmt.Sprintf(`
+Translate the following JSON from %s to %s. Please follow these guidelines:
+
+1. The translated JSON must maintain the exact same structure, format, and key order as the original JSON.
+2. Translate only the string values; ignore numbers, booleans, and null values.
+3. Preserve the formatting within the strings (e.g., line breaks, special characters).
+4. Keep placeholders (e.g., {name}, {{variable}}) unchanged and untranslated.
+5. Translate each element in arrays individually, maintaining the array structure.
+6. Apply these rules recursively to nested objects and arrays.
+7. Ensure translations are simple, straightforward, and suitable for web display, with correct grammar.
+8. Retain proper nouns and technical terms in their original form.
 Input JSON:
 %s
 
 Output the translations in the following format:
 {
-  "en": {translated JSON for English},
-  "ja": {translated JSON for Japanese},
-  ...
-}`, sourceLang, strings.Join(targetLangs, ", "), string(inputJSON))
+"en": {translated JSON for English},
+"ja": {translated JSON for Japanese},
+...
+}
+
+Important:
+
+1. The output must be a valid JSON object.
+2. The structure, formatting, and key order of the translated JSON must exactly match the original.
+3. Include translations for all specified target languages.
+4. Ensure proper use of braces, brackets, quotes, and commas.
+5. Do not add any text or comments outside the JSON structure.
+
+If you encounter any issues or ambiguities, maintain the original content and structure.
+`, sourceLang, strings.Join(targetLangs, ", "), string(inputJSON))
 
 	ctx := context.Background()
-	result, err := llm.Call(ctx, prompt, llms.WithJSONMode())
+	result, err := llm.Call(ctx, prompt, llms.WithJSONMode(), llms.WithModel("gpt-4o-mini"), llms.WithTemperature(0.1))
 	if err != nil {
 		return nil, fmt.Errorf("failed to call LLM: %v", err)
 	}
-
-	log.Println(result)
 
 	var translations map[string]map[string]interface{}
 	err = json.Unmarshal([]byte(result), &translations)
